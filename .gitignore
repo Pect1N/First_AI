@@ -1,0 +1,6 @@
+mnist_dataset/mnist_train_100.csv
+mnist_dataset/mnist_train.csv
+mnist_dataset/mnist_test.csv
+mnist_dataset/mnist_test_10.csv
+matrix_multioly.exe
+matrix_multioly.cpp
