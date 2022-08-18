@@ -62,13 +62,9 @@ output_nodes = 10
 
 neural_number = 5
 epochs_number = 3
-tests_number = 9
-
 l_r = [0.9, 0.7, 0.5, 0.3, 0.1]
 
-n = list()
-for i in range(neural_number):
-    n.append(neuralNetwork(input_nodes, hiden_nodes, output_nodes, l_r[i]))
+tests_number = 8
 
 data_file = open("mnist_dataset\mnist_train.csv", 'r')
 data_list = data_file.readlines()
@@ -78,11 +74,14 @@ test_data_list = test_data_file.readlines()
 test_data_file.close()
 
 for test in range(tests_number):
+    n = list()
+    for i in range(neural_number):
+        n.append(neuralNetwork(input_nodes, hiden_nodes, output_nodes, l_r[i]))
     print("Test number:", test)
     for e in range(epochs_number):
         i = 0
         procent = 1
-        print("Epoch number:", e)
+        print("\nEpoch number:", e)
         for record in data_list:
             if i == int(len(data_list) * (procent / 100)):
                 if procent % 10 == 0: print(procent, "%", end = '', sep = '')
@@ -99,6 +98,7 @@ for test in range(tests_number):
             for j in range(neural_number):
                 n[j].train(inputs, targets)
 
+        print()
         for i in range(neural_number):
             answ = [0, 0]
             wrong = 0
@@ -112,3 +112,4 @@ for test in range(tests_number):
             # print("Number of wrong ansvers", wrong, "/ 10")
             # print("Number of right ansvers", right, "/ 10")
             print("Effectiveness: ", right / output_nodes * 100, "%")
+    print()
